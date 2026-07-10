@@ -32,3 +32,4 @@ targets:
     dependencies:
       - sdk: QuickLookUI.framework
       - sdk: UniformTypeIdentifiers.framework
+      - sdk: WebKit.framework

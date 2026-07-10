@@ -11,6 +11,7 @@
 		8CA877345CAEABEA5738C2E6 /* QuickLookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B51D8403FE2DB643D203527 /* QuickLookUI.framework */; };
 		92838248875D7D35F2923C52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D050E4A6ABC87043CC6F0B /* AppDelegate.swift */; };
 		AA426979CC115E48E93AD099 /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170768656B9E3BD992A0DAF0 /* UniformTypeIdentifiers.framework */; };
+		ED21AD7C752132E6E5E57DC6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5271C6C08014C8149037E508 /* WebKit.framework */; };
 		F3E5A31E51131B69D8F76CCC /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEE33B62AEB98A127DDD0CC /* PreviewProvider.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		170768656B9E3BD992A0DAF0 /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
 		4728B7D6EF95300355F934E0 /* IniPreviewExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = IniPreviewExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		5271C6C08014C8149037E508 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		71D050E4A6ABC87043CC6F0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B51D8403FE2DB643D203527 /* QuickLookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLookUI.framework; path = System/Library/Frameworks/QuickLookUI.framework; sourceTree = SDKROOT; };
 		9BD223BDE07B99F8E205B948 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 			files = (
 				8CA877345CAEABEA5738C2E6 /* QuickLookUI.framework in Frameworks */,
 				AA426979CC115E48E93AD099 /* UniformTypeIdentifiers.framework in Frameworks */,
+				ED21AD7C752132E6E5E57DC6 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +89,7 @@
 			children = (
 				9B51D8403FE2DB643D203527 /* QuickLookUI.framework */,
 				170768656B9E3BD992A0DAF0 /* UniformTypeIdentifiers.framework */,
+				5271C6C08014C8149037E508 /* WebKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

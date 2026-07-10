@@ -1,66 +1,35 @@
 import QuickLookUI
-import WebKit
+import UniformTypeIdentifiers
 
-class PreviewViewController: NSViewController, QLPreviewingController {
+class PreviewProvider: QLPreviewProvider, QLPreviewingController {
 
-    override func loadView() {
-        view = NSView()
+    override func beginRequest(with context: NSExtensionContext) {
+        super.beginRequest(with: context)
     }
 
-    override func beginRequest(with context: NSExtensionContext) {}
+    func providePreview(for request: QLFilePreviewRequest, completionHandler: @escaping (QLPreviewReply?, Error?) -> Void) {
+        let url = request.fileURL
 
-    func preparePreviewOfFile(at url: URL, completionHandler handler: @escaping (Error?) -> Void) {
-        showLoadingView()
-        handler(nil)
-
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let self = self else { return }
-            let entries = (try? self.listZipEntries(from: url)) ?? []
-            let html = self.generateZipHTML(entries: entries, filename: url.lastPathComponent)
-            DispatchQueue.main.async {
-                let webView = self.makeWebView()
-                webView.loadHTMLString(html, baseURL: nil)
-                self.view = webView
-            }
+        let entries: [ZipEntry]
+        do {
+            entries = try listZipEntries(from: url)
+        } catch {
+            let html = errorPageHTML(message: "Could not read archive: \(error.localizedDescription)")
+            let data = html.data(using: .utf8) ?? Data()
+            let reply = QLPreviewReply(dataOfContentType: .html, contentSize: CGSize(width: 800, height: 600)) { _ in data }
+            completionHandler(reply, nil)
+            return
         }
-    }
 
-    // MARK: - View Management
+        let html = generateZipHTML(entries: entries, filename: url.lastPathComponent)
+        guard let data = html.data(using: .utf8) else {
+            completionHandler(nil, NSError(domain: "ZipPreviewError", code: 2,
+                userInfo: [NSLocalizedDescriptionKey: "Failed to encode HTML"]))
+            return
+        }
 
-    private func makeWebView() -> WKWebView {
-        let config = WKWebViewConfiguration()
-        let wv = WKWebView(frame: .zero, configuration: config)
-        wv.autoresizingMask = [.width, .height]
-        return wv
-    }
-
-    private func showLoadingView() {
-        let container = NSView(frame: .zero)
-        container.autoresizingMask = [.width, .height]
-
-        let spinner = NSProgressIndicator()
-        spinner.style = .spinning
-        spinner.controlSize = .regular
-        spinner.translatesAutoresizingMaskIntoConstraints = false
-        spinner.startAnimation(nil)
-
-        let label = NSTextField(labelWithString: "Reading archive\u{2026}")
-        label.textColor = .secondaryLabelColor
-        label.font = .systemFont(ofSize: 13)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.alignment = .center
-
-        container.addSubview(spinner)
-        container.addSubview(label)
-
-        NSLayoutConstraint.activate([
-            spinner.centerXAnchor.constraint(equalTo: container.centerXAnchor),
-            spinner.centerYAnchor.constraint(equalTo: container.centerYAnchor, constant: -10),
-            label.topAnchor.constraint(equalTo: spinner.bottomAnchor, constant: 12),
-            label.centerXAnchor.constraint(equalTo: container.centerXAnchor),
-        ])
-
-        view = container
+        let reply = QLPreviewReply(dataOfContentType: .html, contentSize: CGSize(width: 800, height: 600)) { _ in data }
+        completionHandler(reply, nil)
     }
 
     // MARK: - ZIP Entry Listing
@@ -191,6 +160,18 @@ class PreviewViewController: NSViewController, QLPreviewingController {
             \(rows)
         </body>
         </html>
+        """
+    }
+
+    private func errorPageHTML(message: String) -> String {
+        return """
+        <!DOCTYPE html>
+        <html><head><meta charset="utf-8"><style>
+            *{margin:0;padding:0;box-sizing:border-box}
+            body{font-family:-apple-system,sans-serif;background:#1e1e1e;color:#888;
+                 display:flex;align-items:center;justify-content:center;height:100vh;
+                 padding:40px;text-align:center;font-size:14px}
+        </style></head><body><p>\(escapeHTML(message))</p></body></html>
         """
     }
 

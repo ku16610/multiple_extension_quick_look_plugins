@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		125FDCD20E15FEA46E744148 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D710B512A77939ED34E0F0D /* PreviewViewController.swift */; };
 		34686FD3CD9186F193D96D63 /* QuickLookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B51D8403FE2DB643D203527 /* QuickLookUI.framework */; };
 		3828BD6A1E6CBAA7DDCD842A /* IniPreviewExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4728B7D6EF95300355F934E0 /* IniPreviewExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8CA877345CAEABEA5738C2E6 /* QuickLookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B51D8403FE2DB643D203527 /* QuickLookUI.framework */; };
 		92838248875D7D35F2923C52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D050E4A6ABC87043CC6F0B /* AppDelegate.swift */; };
 		AA426979CC115E48E93AD099 /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170768656B9E3BD992A0DAF0 /* UniformTypeIdentifiers.framework */; };
 		AB4A33C9618DB56E8EE3E262 /* ZipPreviewExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9E5EDCBA9085318FCA74889F /* ZipPreviewExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		E29A777421D3D12FC9556539 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5271C6C08014C8149037E508 /* WebKit.framework */; };
+		B742B1590920786C796134E8 /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D706925534A325F9FD15CDD6 /* PreviewProvider.swift */; };
 		F3E5A31E51131B69D8F76CCC /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEE33B62AEB98A127DDD0CC /* PreviewProvider.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,16 +52,15 @@
 /* Begin PBXFileReference section */
 		170768656B9E3BD992A0DAF0 /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
 		4728B7D6EF95300355F934E0 /* IniPreviewExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = IniPreviewExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		5271C6C08014C8149037E508 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		71D050E4A6ABC87043CC6F0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B51D8403FE2DB643D203527 /* QuickLookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLookUI.framework; path = System/Library/Frameworks/QuickLookUI.framework; sourceTree = SDKROOT; };
 		9BD223BDE07B99F8E205B948 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9C4185A1B9FC7A0563D9B981 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		9D710B512A77939ED34E0F0D /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		9E5EDCBA9085318FCA74889F /* ZipPreviewExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ZipPreviewExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBEE33B62AEB98A127DDD0CC /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
 		C55EF7919406626041B92C08 /* IniPreviewExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IniPreviewExtension.entitlements; sourceTree = "<group>"; };
 		C6D35CCC1C7AFC4CFB8CE4C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D706925534A325F9FD15CDD6 /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
 		D73786BF050089AE8A8417CC /* ZipPreviewExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZipPreviewExtension.entitlements; sourceTree = "<group>"; };
 		EFE259CEC74F1A3D26564960 /* IniPreviewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IniPreviewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -73,7 +71,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				34686FD3CD9186F193D96D63 /* QuickLookUI.framework in Frameworks */,
-				E29A777421D3D12FC9556539 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,7 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				C6D35CCC1C7AFC4CFB8CE4C5 /* Info.plist */,
-				9D710B512A77939ED34E0F0D /* PreviewViewController.swift */,
+				D706925534A325F9FD15CDD6 /* PreviewProvider.swift */,
 				D73786BF050089AE8A8417CC /* ZipPreviewExtension.entitlements */,
 			);
 			path = ZipPreviewExtension;
@@ -123,7 +120,6 @@
 			children = (
 				9B51D8403FE2DB643D203527 /* QuickLookUI.framework */,
 				170768656B9E3BD992A0DAF0 /* UniformTypeIdentifiers.framework */,
-				5271C6C08014C8149037E508 /* WebKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -245,7 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				125FDCD20E15FEA46E744148 /* PreviewViewController.swift in Sources */,
+				B742B1590920786C796134E8 /* PreviewProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

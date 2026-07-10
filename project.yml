@@ -47,4 +47,3 @@ targets:
       CODE_SIGN_ENTITLEMENTS: ZipPreviewExtension/ZipPreviewExtension.entitlements
     dependencies:
       - sdk: QuickLookUI.framework
-      - sdk: WebKit.framework

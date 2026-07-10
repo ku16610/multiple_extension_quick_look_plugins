@@ -1,16 +1,10 @@
 import QuickLookUI
 import WebKit
 
-// MARK: - Principal Class (view-based)
-
 class PreviewViewController: NSViewController, QLPreviewingController {
-    private var webView: WKWebView!
 
     override func loadView() {
-        let config = WKWebViewConfiguration()
-        webView = WKWebView(frame: .zero, configuration: config)
-        webView.autoresizingMask = [.width, .height]
-        view = webView
+        view = NSView()
     }
 
     override func beginRequest(with context: NSExtensionContext) {}
@@ -26,8 +20,7 @@ class PreviewViewController: NSViewController, QLPreviewingController {
             showIniPreview(url: url)
             handler(nil)
         } else if uti == "public.zip-archive" || uti == "com.pkware.zip-archive" {
-            showZipPreview(url: url)
-            handler(nil)
+            showZipPreview(url: url, handler: handler)
         } else {
             showMessage("Unsupported file type")
             handler(nil)
@@ -41,38 +34,83 @@ class PreviewViewController: NSViewController, QLPreviewingController {
             showMessage("Could not read file as UTF-8 text")
             return
         }
+        let webView = makeWebView()
         let html = generateIniHTML(from: content, filename: url.lastPathComponent)
         webView.loadHTMLString(html, baseURL: nil)
+        view = webView
     }
 
-    // MARK: - ZIP Preview (async with loading state)
+    // MARK: - ZIP Preview (async with native loading state)
 
-    private func showZipPreview(url: URL) {
-        webView.loadHTMLString(loadingPageHTML, baseURL: nil)
+    private func showZipPreview(url: URL, handler: @escaping (Error?) -> Void) {
+        showLoadingView()
+        handler(nil)
 
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
             let entries = (try? self.listZipEntries(from: url)) ?? []
             let html = self.generateZipHTML(entries: entries, filename: url.lastPathComponent)
             DispatchQueue.main.async {
-                self.webView.loadHTMLString(html, baseURL: nil)
+                let webView = self.makeWebView()
+                webView.loadHTMLString(html, baseURL: nil)
+                self.view = webView
             }
         }
     }
 
-    // MARK: - Helpers
+    // MARK: - View Management
+
+    private func makeWebView() -> WKWebView {
+        let config = WKWebViewConfiguration()
+        let wv = WKWebView(frame: .zero, configuration: config)
+        wv.autoresizingMask = [.width, .height]
+        return wv
+    }
+
+    private func showLoadingView() {
+        let container = NSView(frame: .zero)
+        container.autoresizingMask = [.width, .height]
+
+        let spinner = NSProgressIndicator()
+        spinner.style = .spinning
+        spinner.controlSize = .regular
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.startAnimation(nil)
+
+        let label = NSTextField(labelWithString: "Reading archive\u{2026}")
+        label.textColor = .secondaryLabelColor
+        label.font = .systemFont(ofSize: 13)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.alignment = .center
+
+        container.addSubview(spinner)
+        container.addSubview(label)
+
+        NSLayoutConstraint.activate([
+            spinner.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: container.centerYAnchor, constant: -10),
+            label.topAnchor.constraint(equalTo: spinner.bottomAnchor, constant: 12),
+            label.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+        ])
+
+        view = container
+    }
 
     private func showMessage(_ message: String) {
-        let html = """
-        <!DOCTYPE html>
-        <html><head><meta charset="utf-8"><style>
-            *{margin:0;padding:0;box-sizing:border-box}
-            body{font-family:-apple-system,sans-serif;background:#1e1e1e;color:#888;
-                 display:flex;align-items:center;justify-content:center;height:100vh;
-                 padding:40px;text-align:center;font-size:14px}
-        </style></head><body><p>\(escapeHTML(message))</p></body></html>
-        """
-        webView?.loadHTMLString(html, baseURL: nil)
+        let label = NSTextField(labelWithString: message)
+        label.textColor = .secondaryLabelColor
+        label.font = .systemFont(ofSize: 13)
+        label.alignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        let container = NSView(frame: .zero)
+        container.autoresizingMask = [.width, .height]
+        container.addSubview(label)
+        NSLayoutConstraint.activate([
+            label.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: container.centerYAnchor),
+        ])
+        view = container
     }
 
     // MARK: - ZIP Entry Listing
@@ -89,7 +127,6 @@ class PreviewViewController: NSViewController, QLPreviewingController {
         let count = bytes.count
         guard count >= 22 else { throw ZipError.invalidArchive }
 
-        // Find End of Central Directory (EOCD) signature
         var eocdPos = count - 22
         let searchStart = max(count - 65557, 0)
         while eocdPos >= searchStart {
@@ -142,35 +179,6 @@ class PreviewViewController: NSViewController, QLPreviewingController {
 
     // MARK: - HTML Generators
 
-    private let loadingPageHTML = """
-    <!DOCTYPE html>
-    <html>
-    <head><meta charset="utf-8"><style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        body{
-            font-family:-apple-system,sans-serif;
-            background:#1e1e1e;color:#ccc;
-            display:flex;flex-direction:column;
-            align-items:center;justify-content:center;
-            height:100vh;gap:16px;
-        }
-        .spinner{
-            width:36px;height:36px;
-            border:3px solid #333;
-            border-top-color:#0a84ff;
-            border-radius:50%;
-            animation:spin .8s linear infinite;
-        }
-        @keyframes spin{to{transform:rotate(360deg)}}
-        .label{font-size:13px;color:#888}
-    </style></head>
-    <body>
-        <div class="spinner"></div>
-        <div class="label">Reading archive&hellip;</div>
-    </body>
-    </html>
-    """
-
     private func generateZipHTML(entries: [ZipEntry], filename: String) -> String {
         let totalFiles = entries.filter { !$0.isDirectory }.count
         let totalDirs = entries.filter { $0.isDirectory }.count
@@ -178,10 +186,8 @@ class PreviewViewController: NSViewController, QLPreviewingController {
         let rows = entries.isEmpty
             ? "<div class=\"empty\">Archive is empty</div>"
             : entries.map { entry -> String in
-                let icon = entry.isDirectory ? "&#128193;" : "&#128196;"
                 let sizeStr = entry.isDirectory ? "" : formatSize(entry.size)
                 let cls = entry.isDirectory ? "entry dir" : "entry"
-                let name = escapeHTML(entry.path)
                 return """
                 <div class="\(cls)">
                     <span class="name">\(escapeHTML(entry.path))</span>

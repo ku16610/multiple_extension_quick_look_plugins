@@ -7,15 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		125FDCD20E15FEA46E744148 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D710B512A77939ED34E0F0D /* PreviewViewController.swift */; };
+		34686FD3CD9186F193D96D63 /* QuickLookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B51D8403FE2DB643D203527 /* QuickLookUI.framework */; };
 		3828BD6A1E6CBAA7DDCD842A /* IniPreviewExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4728B7D6EF95300355F934E0 /* IniPreviewExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8CA877345CAEABEA5738C2E6 /* QuickLookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B51D8403FE2DB643D203527 /* QuickLookUI.framework */; };
 		92838248875D7D35F2923C52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D050E4A6ABC87043CC6F0B /* AppDelegate.swift */; };
 		AA426979CC115E48E93AD099 /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170768656B9E3BD992A0DAF0 /* UniformTypeIdentifiers.framework */; };
-		ED21AD7C752132E6E5E57DC6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5271C6C08014C8149037E508 /* WebKit.framework */; };
+		AB4A33C9618DB56E8EE3E262 /* ZipPreviewExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9E5EDCBA9085318FCA74889F /* ZipPreviewExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E29A777421D3D12FC9556539 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5271C6C08014C8149037E508 /* WebKit.framework */; };
 		F3E5A31E51131B69D8F76CCC /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEE33B62AEB98A127DDD0CC /* PreviewProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C6241A782BCF4DA175D1BD9D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 360E159FA3226FF3C97FCA55 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1DDEE9B6A0AE8E8C1C35A4DD;
+			remoteInfo = ZipPreviewExtension;
+		};
 		D92B616DD3F38AC0FC5315D2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 360E159FA3226FF3C97FCA55 /* Project object */;
@@ -33,6 +43,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				3828BD6A1E6CBAA7DDCD842A /* IniPreviewExtension.appex in Embed Foundation Extensions */,
+				AB4A33C9618DB56E8EE3E262 /* ZipPreviewExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -47,19 +58,31 @@
 		9B51D8403FE2DB643D203527 /* QuickLookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLookUI.framework; path = System/Library/Frameworks/QuickLookUI.framework; sourceTree = SDKROOT; };
 		9BD223BDE07B99F8E205B948 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9C4185A1B9FC7A0563D9B981 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9D710B512A77939ED34E0F0D /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
+		9E5EDCBA9085318FCA74889F /* ZipPreviewExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ZipPreviewExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBEE33B62AEB98A127DDD0CC /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
 		C55EF7919406626041B92C08 /* IniPreviewExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IniPreviewExtension.entitlements; sourceTree = "<group>"; };
+		C6D35CCC1C7AFC4CFB8CE4C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D73786BF050089AE8A8417CC /* ZipPreviewExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZipPreviewExtension.entitlements; sourceTree = "<group>"; };
 		EFE259CEC74F1A3D26564960 /* IniPreviewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IniPreviewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		71DA0B5E7A562B30F4875D9B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34686FD3CD9186F193D96D63 /* QuickLookUI.framework in Frameworks */,
+				E29A777421D3D12FC9556539 /* WebKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CE3C5CD46B7448E4A52D2B0E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				8CA877345CAEABEA5738C2E6 /* QuickLookUI.framework in Frameworks */,
 				AA426979CC115E48E93AD099 /* UniformTypeIdentifiers.framework in Frameworks */,
-				ED21AD7C752132E6E5E57DC6 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,8 +103,19 @@
 			children = (
 				EFE259CEC74F1A3D26564960 /* IniPreviewer.app */,
 				4728B7D6EF95300355F934E0 /* IniPreviewExtension.appex */,
+				9E5EDCBA9085318FCA74889F /* ZipPreviewExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		5E0FA604292A61BE37AB2246 /* ZipPreviewExtension */ = {
+			isa = PBXGroup;
+			children = (
+				C6D35CCC1C7AFC4CFB8CE4C5 /* Info.plist */,
+				9D710B512A77939ED34E0F0D /* PreviewViewController.swift */,
+				D73786BF050089AE8A8417CC /* ZipPreviewExtension.entitlements */,
+			);
+			path = ZipPreviewExtension;
 			sourceTree = "<group>";
 		};
 		A43F61263E30132155F6370D /* Frameworks */ = {
@@ -99,6 +133,7 @@
 			children = (
 				2438C44807A702F1D783BBF1 /* IniPreviewer */,
 				CFB6DD93122F8252CFFCCFBE /* IniPreviewExtension */,
+				5E0FA604292A61BE37AB2246 /* ZipPreviewExtension */,
 				A43F61263E30132155F6370D /* Frameworks */,
 				5B5328660ED7B93A953FE456 /* Products */,
 			);
@@ -117,6 +152,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1DDEE9B6A0AE8E8C1C35A4DD /* ZipPreviewExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E62E972A1463F2970B4E3730 /* Build configuration list for PBXNativeTarget "ZipPreviewExtension" */;
+			buildPhases = (
+				7190E8266567C4C8FAE57621 /* Sources */,
+				71DA0B5E7A562B30F4875D9B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZipPreviewExtension;
+			packageProductDependencies = (
+			);
+			productName = ZipPreviewExtension;
+			productReference = 9E5EDCBA9085318FCA74889F /* ZipPreviewExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		A78B4929F47754982C40829F /* IniPreviewExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1EFD8F0825984C6B5D45B222 /* Build configuration list for PBXNativeTarget "IniPreviewExtension" */;
@@ -146,6 +199,7 @@
 			);
 			dependencies = (
 				F619490648DD1999E40B7169 /* PBXTargetDependency */,
+				DCBD961462446BF92182E363 /* PBXTargetDependency */,
 			);
 			name = IniPreviewer;
 			packageProductDependencies = (
@@ -181,11 +235,20 @@
 			targets = (
 				A78B4929F47754982C40829F /* IniPreviewExtension */,
 				FD75BE8BA7401F530FFBCEED /* IniPreviewer */,
+				1DDEE9B6A0AE8E8C1C35A4DD /* ZipPreviewExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7190E8266567C4C8FAE57621 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				125FDCD20E15FEA46E744148 /* PreviewViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		78C06409724A63A81A18314B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -205,6 +268,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		DCBD961462446BF92182E363 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1DDEE9B6A0AE8E8C1C35A4DD /* ZipPreviewExtension */;
+			targetProxy = C6241A782BCF4DA175D1BD9D /* PBXContainerItemProxy */;
+		};
 		F619490648DD1999E40B7169 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A78B4929F47754982C40829F /* IniPreviewExtension */;
@@ -394,6 +462,38 @@
 			};
 			name = Debug;
 		};
+		E535A5ABEFBAF6445A445B87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ZipPreviewExtension/ZipPreviewExtension.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = ZipPreviewExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.IniPreviewer.ZipPreviewExtension;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		FB1A560479261C2DC965148B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ZipPreviewExtension/ZipPreviewExtension.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = ZipPreviewExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.IniPreviewer.ZipPreviewExtension;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -420,6 +520,15 @@
 			buildConfigurations = (
 				45E9285F843D03C12BA56786 /* Debug */,
 				1708BFCE1EAA37610864C3CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E62E972A1463F2970B4E3730 /* Build configuration list for PBXNativeTarget "ZipPreviewExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB1A560479261C2DC965148B /* Debug */,
+				E535A5ABEFBAF6445A445B87 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

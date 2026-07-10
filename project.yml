@@ -18,6 +18,8 @@ targets:
     dependencies:
       - target: IniPreviewExtension
         embed: true
+      - target: ZipPreviewExtension
+        embed: true
 
   IniPreviewExtension:
     type: app-extension
@@ -32,4 +34,17 @@ targets:
     dependencies:
       - sdk: QuickLookUI.framework
       - sdk: UniformTypeIdentifiers.framework
+
+  ZipPreviewExtension:
+    type: app-extension
+    platform: macOS
+    productName: ZipPreviewExtension
+    sources:
+      - ZipPreviewExtension
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.example.IniPreviewer.ZipPreviewExtension
+      INFOPLIST_FILE: ZipPreviewExtension/Info.plist
+      CODE_SIGN_ENTITLEMENTS: ZipPreviewExtension/ZipPreviewExtension.entitlements
+    dependencies:
+      - sdk: QuickLookUI.framework
       - sdk: WebKit.framework

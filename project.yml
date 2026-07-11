@@ -26,6 +26,8 @@ targets:
         embed: true
       - target: PePreviewExtension
         embed: true
+      - target: IsoPreviewExtension
+        embed: true
 
   IniPreviewExtension:
     type: app-extension
@@ -78,6 +80,21 @@ targets:
       INFOPLIST_FILE: SevenZipPreviewExtension/Info.plist
       CODE_SIGN_ENTITLEMENTS: SevenZipPreviewExtension/SevenZipPreviewExtension.entitlements
       SWIFT_OBJC_BRIDGING_HEADER: SevenZipPreviewExtension/SevenZipPreviewExtension-Bridging-Header.h
+      OTHER_LDFLAGS: ["-larchive"]
+    dependencies:
+      - sdk: QuickLookUI.framework
+
+  IsoPreviewExtension:
+    type: app-extension
+    platform: macOS
+    productName: IsoPreviewExtension
+    sources:
+      - IsoPreviewExtension
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.example.IniPreviewer.IsoPreviewExtension
+      INFOPLIST_FILE: IsoPreviewExtension/Info.plist
+      CODE_SIGN_ENTITLEMENTS: IsoPreviewExtension/IsoPreviewExtension.entitlements
+      SWIFT_OBJC_BRIDGING_HEADER: IsoPreviewExtension/IsoPreviewExtension-Bridging-Header.h
       OTHER_LDFLAGS: ["-larchive"]
     dependencies:
       - sdk: QuickLookUI.framework

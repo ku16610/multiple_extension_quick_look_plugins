@@ -1,6 +1,8 @@
 # Multiple Extension Quick Look Plugins
 
-Quick Look preview extensions for macOS 14+ that parse and display the contents of various file types directly — no subprocess spawning needed.
+Quick Look preview extensions for macOS 14+ that parse and display the contents of various file types directly , no subprocess spawning needed.
+
+This was created as a small test , and to solve some personal annoyances in my life.
 
 ## Supported Formats
 

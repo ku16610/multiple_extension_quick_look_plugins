@@ -20,6 +20,12 @@ targets:
         embed: true
       - target: ZipPreviewExtension
         embed: true
+      - target: DmgPreviewExtension
+        embed: true
+      - target: SevenZipPreviewExtension
+        embed: true
+      - target: PePreviewExtension
+        embed: true
 
   IniPreviewExtension:
     type: app-extension
@@ -45,5 +51,46 @@ targets:
       PRODUCT_BUNDLE_IDENTIFIER: com.example.IniPreviewer.ZipPreviewExtension
       INFOPLIST_FILE: ZipPreviewExtension/Info.plist
       CODE_SIGN_ENTITLEMENTS: ZipPreviewExtension/ZipPreviewExtension.entitlements
+    dependencies:
+      - sdk: QuickLookUI.framework
+
+  DmgPreviewExtension:
+    type: app-extension
+    platform: macOS
+    productName: DmgPreviewExtension
+    sources:
+      - DmgPreviewExtension
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.example.IniPreviewer.DmgPreviewExtension
+      INFOPLIST_FILE: DmgPreviewExtension/Info.plist
+      CODE_SIGN_ENTITLEMENTS: DmgPreviewExtension/DmgPreviewExtension.entitlements
+    dependencies:
+      - sdk: QuickLookUI.framework
+
+  SevenZipPreviewExtension:
+    type: app-extension
+    platform: macOS
+    productName: SevenZipPreviewExtension
+    sources:
+      - SevenZipPreviewExtension
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.example.IniPreviewer.SevenZipPreviewExtension
+      INFOPLIST_FILE: SevenZipPreviewExtension/Info.plist
+      CODE_SIGN_ENTITLEMENTS: SevenZipPreviewExtension/SevenZipPreviewExtension.entitlements
+      SWIFT_OBJC_BRIDGING_HEADER: SevenZipPreviewExtension/SevenZipPreviewExtension-Bridging-Header.h
+      OTHER_LDFLAGS: ["-larchive"]
+    dependencies:
+      - sdk: QuickLookUI.framework
+
+  PePreviewExtension:
+    type: app-extension
+    platform: macOS
+    productName: PePreviewExtension
+    sources:
+      - PePreviewExtension
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.example.IniPreviewer.PePreviewExtension
+      INFOPLIST_FILE: PePreviewExtension/Info.plist
+      CODE_SIGN_ENTITLEMENTS: PePreviewExtension/PePreviewExtension.entitlements
     dependencies:
       - sdk: QuickLookUI.framework
